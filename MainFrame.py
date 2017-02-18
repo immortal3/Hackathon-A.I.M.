@@ -1,9 +1,11 @@
 from tkinter import *
 import Main
 from PIL import ImageTk,Image
-
+import ModeFile
 
 modeNo = 0
+def Modesetfinger():
+	ModeFile.run()
 
 def startbutton():
 	print ('Mode is given to Main program',ModeNo)
@@ -48,7 +50,8 @@ img = ImageTk.PhotoImage(Image.open('H:\Codes\Python\CompEye\logo_hackathon.png'
 panel = Label(root, image = img)
 panel.pack()
 
-
+Modesetbtn = Button(frame, text="Set Mode using Finger(not complete)",fg = 'Brown',command=Modesetfinger)
+Modesetbtn.pack()
 
 frame.pack()
 
