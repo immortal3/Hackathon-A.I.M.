@@ -11,16 +11,22 @@ def action(modeNo,Direction):
             if(modeNo == 1):
                 volume.volume_down()
             elif(modeNo == 2):
-                BrowserCommand.netxTab()
+                BrowserCommand.previousTab()
         elif Direction == 'Right':
             if(modeNo == 1):
                 volume.volume_up()
+            elif(modeNo == 2):
+                BrowserCommand.netxTab()
         elif Direction == 'up':
             if(modeNo == 1):
                 Media_Controll.PlayPrevious_Music()
+            elif(modeNo == 2):
+                BrowserCommand.openTab()
         elif Direction == 'down':
             if(modeNo == 1):
                 Media_Controll.Playnext_Music()
+            elif(modeNo == 2):
+                BrowserCommand.closeTab()
 
 def start(ModeNo):
     videocam = cv2.VideoCapture(0)
@@ -41,19 +47,19 @@ def start(ModeNo):
             #print (deltaY)
             if(deltaX > 15):
                 action(ModeNo,'Right')
-                print ('Right')
+                #print ('Right')
 
             if(deltaX < -15):
                 action(ModeNo,'left')
-                print ('left')
+                #print ('left')
 
             if(deltaY < -40):
                 action(ModeNo,'down')
-                print ('down')
+                #print ('down')
 
             if(deltaY > 40):
                 action(ModeNo,'up')
-                print ('up')
+                #print ('up')
 
             # time.sleep(0.01)
             StartX = x
