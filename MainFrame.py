@@ -2,8 +2,19 @@ from tkinter import *
 import Main
 from PIL import ImageTk,Image
 
+
+modeNo = 0
+
 def startbutton():
-	Main.start()
+	print ('Mode is given to Main program',ModeNo)
+	Main.start(ModeNo.get())
+
+
+
+def setmode(tempModeNo):
+	print ('Set Mode is called')
+	ModeNo.set(tempModeNo)
+	print ('Mode is set to :' ,ModeNo.get())
 
 def settingTab():
 	#print ('setting tab')
@@ -11,17 +22,21 @@ def settingTab():
 	setting_frame.title('setting')
 	setting_Label = Label(setting_frame, text="Modes")
 	setting_Label.pack()
-	Mode1 = IntVar()
 	#Mode2 = IntVar(setting_frame)
-	Mode1 = Checkbutton(setting_frame, text = "Music",onvalue = 1, offvalue = 0, height=5, width = 20)
-	print (Mode1.getvar())
-	Mode1.pack()
+	Mode1btn = Button(setting_frame, text="Music", fg="Brown", command=lambda :setmode(1))
+	Mode2btn = Button(setting_frame, text="Browser", fg="Brown", command= lambda :setmode(2))
+	Mode3btn = Button(setting_frame, text="Custom", fg="Brown", command= lambda :setmode(3))
+	Mode1btn.pack()
+	Mode2btn.pack()
+	Mode3btn.pack()
+
+
 
 
 root = Tk()
 frame = Frame(root)
 root.title('A.I.M.')
-
+ModeNo = IntVar(frame)
 
 startbutton = Button(frame, text="Start A.I.M", fg="Brown", command=startbutton)
 startbutton.pack(side = BOTTOM)
