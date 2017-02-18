@@ -1,6 +1,6 @@
 import ctypes
 import time
-
+import pyautogui
 
 length = 0.1
 
@@ -8,7 +8,9 @@ SendInput = ctypes.windll.user32.SendInput
 
 VK_ALT = 0x12
 VK_TAB = 0x09
-
+VK_W = 0x57
+VK_CTRL = 0x00
+VK_close_tab = 23
 
 PUL = ctypes.POINTER(ctypes.c_ulong)
 
@@ -65,8 +67,13 @@ def keyUp(keyCode):
         SendInput(1, ctypes.pointer(x), ctypes.sizeof(x))
 
 def netxTab():
-	keyDown(VK_TAB)
-	keyDown(VK_ALT)
-	time.sleep(length)
-	keyUp(VK_TAB)
-	keyUp(VK_ALT)
+    pyautogui.hotkey('ctrl', 'tab')
+
+def closeTab():
+    pyautogui.hotkey('ctrl','w')
+
+def openTab():
+    pyautogui.hotkey('ctrl','t')
+
+def previousTab():
+    pyautogui.hotkey('ctrl','shift','tab')
