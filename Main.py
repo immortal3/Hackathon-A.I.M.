@@ -3,9 +3,26 @@ import numpy as np
 import time
 import volume
 import Media_Controll
+import BrowserCommand
 
 
-def start():
+def action(modeNo,Direction):
+        if Direction == 'left':
+            if(modeNo == 1):
+                volume.volume_down()
+            elif(modeNo == 2):
+                BrowserCommand.netxTab()
+        elif Direction == 'Right':
+            if(modeNo == 1):
+                volume.volume_up()
+        elif Direction == 'up':
+            if(modeNo == 1):
+                Media_Controll.PlayPrevious_Music()
+        elif Direction == 'down':
+            if(modeNo == 1):
+                Media_Controll.Playnext_Music()
+
+def start(ModeNo):
     videocam = cv2.VideoCapture(0)
     face_cascade = cv2.CascadeClassifier('closed_frontal_palm.xml')
 
@@ -23,16 +40,19 @@ def start():
             #print (deltaX)
             #print (deltaY)
             if(deltaX > 15):
+                action(ModeNo,'Right')
                 print ('Right')
-                volume.volume_up()
+
             if(deltaX < -15):
+                action(ModeNo,'left')
                 print ('left')
-                volume.volume_down()
+
             if(deltaY < -40):
+                action(ModeNo,'down')
                 print ('down')
-                Media_Controll.Playnext_Music()
+
             if(deltaY > 40):
-                Media_Controll.PlayPrevious_Music()
+                action(ModeNo,'up')
                 print ('up')
 
             # time.sleep(0.01)
